@@ -66,8 +66,8 @@ class MainAdapter(
     fun setData(newList: List<User>) {
         val diffCallback = DiffUtilCallBack(users, newList)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
+        diffResult.dispatchUpdatesTo(this)
         users.clear()
         users.addAll(newList)
-        diffResult.dispatchUpdatesTo(this)
     }
 }
