@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.android.androidtemplate.R
 import com.android.androidtemplate.data.model.User
 import com.android.androidtemplate.interfaces.AdapterItemClick
+import com.android.androidtemplate.utils.DiffUtilCallBack
 import com.bumptech.glide.Glide
 
 /**
@@ -17,7 +19,7 @@ import com.bumptech.glide.Glide
  */
 
 class MainAdapter(
-    private val users: ArrayList<User>,
+    private var users: ArrayList<User>,
     val itemClickListener: AdapterItemClick<User>
 ) :
     RecyclerView.Adapter<MainAdapter.DataViewHolder>() {
@@ -61,7 +63,11 @@ class MainAdapter(
         holder.bind(users[position])
     }
 
-    fun addData(list: List<User>) {
-        users.addAll(list)
+    fun setData(newList: List<User>) {
+        val diffCallback = DiffUtilCallBack(users, newList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        users.clear()
+        users.addAll(newList)
+        diffResult.dispatchUpdatesTo(this)
     }
 }
