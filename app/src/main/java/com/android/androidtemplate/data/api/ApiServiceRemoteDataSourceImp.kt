@@ -1,8 +1,8 @@
 package com.android.androidtemplate.data.api
 
 import com.android.androidtemplate.data.model.User
-import com.android.androidtemplate.network.RetrofitBuilder
 import io.reactivex.Single
+import javax.inject.Inject
 
 
 /**
@@ -10,8 +10,9 @@ import io.reactivex.Single
  * @Date: 20/04/2022.
  */
 
-class ApiServiceImpl : ApiService {
+class ApiServiceRemoteDataSourceImp @Inject constructor(private val apiService: ApiService) :
+    ApiServiceRemoteDataSource {
     override fun getContributors(): Single<List<User>> {
-        return RetrofitBuilder.getRetrofit().create(ApiService::class.java).getContributors()
+        return apiService.getContributors()
     }
 }

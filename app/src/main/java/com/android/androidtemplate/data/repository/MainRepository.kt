@@ -1,8 +1,11 @@
 package com.android.androidtemplate.data.repository
 
 import com.android.androidtemplate.data.api.ApiHelper
+import com.android.androidtemplate.data.api.ApiServiceRemoteDataSource
+import com.android.androidtemplate.data.api.ApiServiceRemoteDataSourceImp
 import com.android.androidtemplate.data.model.User
 import io.reactivex.Single
+import javax.inject.Inject
 
 
 /**
@@ -10,8 +13,8 @@ import io.reactivex.Single
  * @Date: 20/04/2022.
  */
 
-class MainRepository (private val apiHelper: ApiHelper){
+class MainRepository @Inject constructor(private val apiServiceRemoteDataSource: ApiServiceRemoteDataSource) {
     fun getContributors(): Single<List<User>> {
-        return apiHelper.getContributors()
+        return apiServiceRemoteDataSource.getContributors()
     }
 }

@@ -6,24 +6,25 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.androidtemplate.R
 import com.android.androidtemplate.data.api.ApiHelper
-import com.android.androidtemplate.data.api.ApiServiceImpl
+import com.android.androidtemplate.data.api.ApiServiceRemoteDataSourceImp
 import com.android.androidtemplate.data.model.User
 import com.android.androidtemplate.interfaces.AdapterItemClick
 import com.android.androidtemplate.ui.main.adapter.MainAdapter
 import com.android.androidtemplate.ui.main.viewmodel.MainViewModel
-import com.android.androidtemplate.ui.main.viewmodel.ViewModelFactory
 import com.android.androidtemplate.utils.Status
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel by viewModels<MainViewModel>()
     private lateinit var adapter: MainAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupUI()
-        setUpViewModel()
+//        setUpViewModel()
         setupObserver()
     }
 
@@ -77,7 +78,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpViewModel() {
-        mainViewModel = ViewModelProviders.of(this, ViewModelFactory(ApiHelper(ApiServiceImpl())))
-            .get(MainViewModel::class.java)
+//        mainViewModel = viewModels()
+//        mainViewModel = ViewModelProviders.of(this, ViewModelFactory(ApiHelper(ApiServiceRemoteDataSourceImp())))
+//            .get(MainViewModel::class.java)
     }
 }

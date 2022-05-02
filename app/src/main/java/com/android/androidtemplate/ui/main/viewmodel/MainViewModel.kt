@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.android.androidtemplate.data.model.User
 import com.android.androidtemplate.data.repository.MainRepository
 import com.android.androidtemplate.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 
 /**
@@ -16,7 +18,8 @@ import io.reactivex.schedulers.Schedulers
  * @Date: 20/04/2022.
  */
 
-class MainViewModel(private val mainRepository: MainRepository) : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(private val mainRepository: MainRepository) : ViewModel() {
     private val userList = MutableLiveData<Resource<List<User>>>()
     private val compositeDisposable = CompositeDisposable()
 
