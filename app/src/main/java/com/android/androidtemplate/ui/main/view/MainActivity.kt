@@ -8,12 +8,9 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.androidtemplate.R
-import com.android.androidtemplate.data.api.ApiHelper
-import com.android.androidtemplate.data.api.ApiServiceRemoteDataSourceImp
 import com.android.androidtemplate.data.model.User
 import com.android.androidtemplate.interfaces.AdapterItemClick
 import com.android.androidtemplate.ui.main.adapter.MainAdapter

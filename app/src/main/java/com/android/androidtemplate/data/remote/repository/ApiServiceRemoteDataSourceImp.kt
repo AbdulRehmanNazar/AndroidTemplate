@@ -1,7 +1,8 @@
-package com.android.androidtemplate.data.api
+package com.android.androidtemplate.data.remote.repository
 
 import com.android.androidtemplate.data.model.User
-import io.reactivex.Single
+import com.android.androidtemplate.data.remote.repository.api.ApiService
+import io.reactivex.Observable
 import javax.inject.Inject
 
 
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 class ApiServiceRemoteDataSourceImp @Inject constructor(private val apiService: ApiService) :
     ApiServiceRemoteDataSource {
-    override fun getContributors(): Single<List<User>> {
+    override fun getContributors(): Observable<List<User>> {
         return apiService.getContributors()
     }
 }

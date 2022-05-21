@@ -1,5 +1,7 @@
 package com.android.androidtemplate.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 
@@ -7,7 +9,10 @@ import com.google.gson.annotations.SerializedName
  * @Author: Abdul Rehman
  * @Date: 20/04/2022.
  */
+
+@Entity(tableName = "user")
 data class User(
+    @PrimaryKey
     @SerializedName("id")
     val id: Int?,
     @SerializedName("login")

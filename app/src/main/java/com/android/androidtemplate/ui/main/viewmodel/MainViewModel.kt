@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.android.androidtemplate.data.model.User
-import com.android.androidtemplate.data.repository.MainRepository
+import com.android.androidtemplate.data.remote.repository.MainRepository
 import com.android.androidtemplate.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers

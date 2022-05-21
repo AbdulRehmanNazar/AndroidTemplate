@@ -1,13 +1,16 @@
 package com.android.androidtemplate.di
 
-import com.android.androidtemplate.data.api.ApiService
-import com.android.androidtemplate.data.api.ApiServiceRemoteDataSource
-import com.android.androidtemplate.data.api.ApiServiceRemoteDataSourceImp
+import android.content.Context
+import com.android.androidtemplate.data.local.AppDataBase
+import com.android.androidtemplate.data.local.UserDao
+import com.android.androidtemplate.data.remote.repository.api.ApiService
+import com.android.androidtemplate.data.remote.repository.ApiServiceRemoteDataSource
+import com.android.androidtemplate.data.remote.repository.ApiServiceRemoteDataSourceImp
 import com.android.androidtemplate.network.RetrofitBuilder
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -55,8 +58,21 @@ object ApplicationModule {
     }
 
     @Provides
-    fun provideAPIRemoteDataSource(apiService: ApiService): ApiServiceRemoteDataSource{
+    fun provideAPIRemoteDataSource(apiService: ApiService): ApiServiceRemoteDataSource {
         return ApiServiceRemoteDataSourceImp(apiService)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideDataBase(@ApplicationContext appContext: Context): AppDataBase {
+        return AppDataBase.getDatabase(appContext)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserDAO(appDataBase: AppDataBase):UserDao{
+        return appDataBase.userDao()
     }
 
 }
