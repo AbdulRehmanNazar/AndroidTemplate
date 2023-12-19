@@ -48,11 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupObserver() {
-        mainViewModel.getUsersLocalDB().observe(this, object : Observer<List<User>> {
-            override fun onChanged(userList: List<User>?) {
-                userList?.let { renderList(it) }
-            }
-        })
+        mainViewModel.getUsersLocalDB().observe(this) { userList -> renderList(userList) }
     }
 
     private fun renderList(users: List<User>) {

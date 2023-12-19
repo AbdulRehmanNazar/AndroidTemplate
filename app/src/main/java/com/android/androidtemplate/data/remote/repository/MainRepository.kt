@@ -16,17 +16,20 @@ import javax.inject.Inject
  * @Date: 20/04/2022.
  */
 
-class MainRepository @Inject constructor(private val apiServiceRemoteDataSource: ApiServiceRemoteDataSource,
-                                         private val dataBase: AppDataBase
+class MainRepository @Inject constructor(
+    private val apiServiceRemoteDataSource: ApiServiceRemoteDataSource,
+    private val dataBase: AppDataBase
 ) {
 
-    fun getContributors(success: (List<User>) -> Unit,
-                        failure: (Throwable) -> Unit,
-                        completed: () -> Unit
+    fun getContributors(
+        success: (List<User>) -> Unit,
+        failure: (Throwable) -> Unit,
+        completed: () -> Unit
     ): Disposable {
         var disposable: Disposable? = null
         apiServiceRemoteDataSource.getContributors().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread()).subscribe(object : Observer<List<User>> {
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : Observer<List<User>> {
                 override fun onSubscribe(d: Disposable) {
                     disposable = d
                 }
@@ -51,7 +54,8 @@ class MainRepository @Inject constructor(private val apiServiceRemoteDataSource:
     fun addUserLocalDB(usersList: List<User>): Disposable {
         return Completable.fromAction {
             dataBase.userDao().insertAllUsers(usersList)
-        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe {
+        }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
             println()
         }
     }

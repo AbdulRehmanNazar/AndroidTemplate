@@ -44,7 +44,8 @@ object ApplicationModule {
 
     @Provides
     fun provideRetrofit(baseURL: String, client: OkHttpClient): Retrofit {
-        return Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        return Retrofit.Builder()
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create()).baseUrl(baseURL).client(client)
             .build()
     }

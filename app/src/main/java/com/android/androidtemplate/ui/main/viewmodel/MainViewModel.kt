@@ -19,8 +19,9 @@ import javax.inject.Inject
  */
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val mainRepository: MainRepository,
-                                        private val dataBase: AppDataBase
+class MainViewModel @Inject constructor(
+    private val mainRepository: MainRepository,
+    private val dataBase: AppDataBase
 ) : ViewModel() {
     private val userList = MutableLiveData<Resource<List<User>>>()
     private val compositeDisposable = CompositeDisposable()
@@ -30,7 +31,7 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
     }
 
 
-    fun fetchUsers() {
+    private fun fetchUsers() {
         compositeDisposable.add(mainRepository.getContributors({
             compositeDisposable.add(mainRepository.addUserLocalDB(it))
         }, {

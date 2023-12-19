@@ -1,3 +1,8 @@
+rootProject.name = "AndroidTemplate"
+include ':app'
+enableFeaturePreview("VERSION_CATALOGS")
+
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -5,6 +10,40 @@ dependencyResolutionManagement {
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
     }
+
+    versionCatalogs {
+        create("libs") {
+            version("timber-version", "4.7.1")
+            alias("timber").to("com.jakewharton.timber", "timber").versionRef("timber-version")
+
+            version("retrofit", "2.9.0")
+            alias("retrofit").to("com.squareup.retrofit2", "retrofit").versionRef("retrofit")
+            alias("converter-gson").to("com.squareup.retrofit2", "converter-gson").versionRef("retrofit")
+//            alias("adapter-rxjava2").to("com.squareup.retrofit2","adapter-rxjava2").versionRef("retrofit")
+            alias("adapter-rxjava2").to("com.squareup.retrofit2", "adapter-rxjava2").versionRef("retrofit")
+
+            bundle("retrofit-bundle", ["retrofit", "converter-gson", "adapter-rxjava2"])
+
+            //    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+//    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+//    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
+
+//            version("room", "2.4.2")
+//            alias("room-runtime").to("androidx.room:room-runtime", "room-runtime").versionRef("room")
+//            alias("room-ktx").to("androidx.room:room-ktx", "room-ktx").versionRef("room")
+//            alias("room-compiler").to("androidx.room:room-compiler", "room-compiler").versionRef("room")
+//            alias("room-rxjava").to("androidx.room:room-rxjava2", "room-rxjava").versionRef("room")
+//            bundle("room-bundle",["room-runtime","room-ktx","room-compiler","room-rxjava"])
+        }
+    }
+    //room
+//    def room_version = "2.4.2"
+//    implementation "androidx.room:room-runtime:$room_version"
+//    implementation "androidx.room:room-ktx:$room_version"
+//    implementation("androidx.room:room-rxjava2:$room_version")
+//    kapt "androidx.room:room-compiler:$room_version"
 }
-rootProject.name = "AndroidTemplate"
-include ':app'
+
+
+

@@ -12,11 +12,11 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @Date: 20/04/2022.
  */
 object RetrofitBuilder {
-     const val BASE_URL = "https://api.github.com/repos/ruby/ruby/"
+    const val BASE_URL = "https://api.github.com/repos/ruby/ruby/"
 
     fun getRetrofit(): Retrofit {
         val interceptor = HttpLoggingInterceptor()
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
 
         return Retrofit.Builder()
